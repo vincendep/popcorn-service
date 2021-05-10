@@ -1,1 +1,1 @@
-# popcorn-discovery-service
+# popcorn-service
