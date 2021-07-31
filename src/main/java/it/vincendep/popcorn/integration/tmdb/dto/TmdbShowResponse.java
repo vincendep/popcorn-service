@@ -21,7 +21,7 @@ public abstract class TmdbShowResponse {
     @JsonProperty("vote_average")
     private Float voteAverage;
     @JsonProperty("vote_count")
-    private Integer voteCount;
+    private Long voteCount;
     @JsonProperty("popularity")
     private Float popularity;
     @JsonProperty("poster_path")

@@ -20,11 +20,11 @@ public class TmdbMovieResponse extends TmdbShowResponse {
     @JsonProperty("adult")
     private Boolean adult;
     @JsonProperty("budget")
-    private Integer budget;
+    private Long budget;
     @JsonProperty("release_date")
     private LocalDate releaseDate;
     @JsonProperty("revenue")
-    private Integer revenue;
+    private Long revenue;
     @JsonProperty("runtime")
     private Integer runtime;
 }
