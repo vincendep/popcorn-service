@@ -16,7 +16,7 @@ public class PopcornRouter {
 
     @Bean
     public RouterFunction<ServerResponse> popcornRoutes() {
-        return route(GET("movies"), handler::getMovie)
+        return route(GET("movies"), handler::queryMovies)
                 .andRoute(GET("movies/{id}"), handler::getMovie);
     }
 }
