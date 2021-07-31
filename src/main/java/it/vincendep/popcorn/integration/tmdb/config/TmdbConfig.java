@@ -10,43 +10,38 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import static org.springframework.web.reactive.function.client.ClientRequest.from;
+import static org.springframework.web.util.UriComponentsBuilder.fromUri;
+
 @Configuration
 @RequiredArgsConstructor
-@PropertySource("classpath:config/tmdb.properties")
-@EnableConfigurationProperties(TmdbProperties.class)
 public class TmdbConfig {
 
     private final TmdbProperties tmdbProperties;
 
-    @Bean("tmdb-file")
-    public WebClient tmdbFileClient(WebClient.Builder builder) {
-        return builder.baseUrl(tmdbProperties.getFileHost()).build();
-    }
-
-    @Bean("tmdb-v4")
+    @Bean
     public WebClient tmdbV4Client(WebClient.Builder builder) {
         ExchangeFilterFunction requestTokenFilter = (request, next) ->
-                next.exchange(ClientRequest.from(request)
+                next.exchange(from(request)
                         .headers(h -> h.setBearerAuth(tmdbProperties.getAccessToken()))
                         .build());
         return builder
-                .baseUrl(tmdbProperties.getApiHost() + "/4")
+                .baseUrl("https://api.themoviedb.org/4")
                 .filter(requestTokenFilter)
                 .build();
     }
 
-    @Bean("tmdb-v3")
+    @Bean
     public WebClient tmdbV3Client(WebClient.Builder builder) {
         ExchangeFilterFunction apiKeyFilter = (clientRequest, nextFilter) ->
-                nextFilter.exchange(ClientRequest.from(clientRequest)
-                        .url(UriComponentsBuilder
-                                .fromUri(clientRequest.url())
+                nextFilter.exchange(from(clientRequest)
+                        .url(fromUri(clientRequest.url())
                                 .queryParam("api_key", tmdbProperties.getApiKey())
                                 .build()
                                 .toUri())
                         .build());
         return builder
-                .baseUrl(tmdbProperties.getApiHost() + "/3")
+                .baseUrl("https://api.themoviedb.org/3")
                 .filter(apiKeyFilter)
                 .build();
     }

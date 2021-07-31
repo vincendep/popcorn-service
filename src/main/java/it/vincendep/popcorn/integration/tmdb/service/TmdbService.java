@@ -14,7 +14,7 @@ public class TmdbService {
 
     private final WebClient tmdbClient;
 
-    public TmdbService(@Qualifier("tmdb-v3") WebClient tmdbClient) {
+    public TmdbService(@Qualifier("tmdbV3Client") WebClient tmdbClient) {
         this.tmdbClient = tmdbClient;
     }
 

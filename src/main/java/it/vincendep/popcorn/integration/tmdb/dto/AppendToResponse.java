@@ -3,6 +3,7 @@ package it.vincendep.popcorn.integration.tmdb.dto;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,9 +20,8 @@ public enum AppendToResponse {
     private final String queryParam;
 
     public static String queryString(AppendToResponse ...appendToResponses ) {
-    	return emptyToNull(Arrays
-                .stream(appendToResponses)
+    	return Arrays.stream(appendToResponses)
                 .map(AppendToResponse::getQueryParam)
-                .collect(Collectors.joining(",")));
+                .collect(Collectors.joining(","));
     }
 }

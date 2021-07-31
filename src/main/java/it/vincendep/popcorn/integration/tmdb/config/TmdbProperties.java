@@ -1,21 +1,16 @@
 package it.vincendep.popcorn.integration.tmdb.config;
 
 import lombok.Data;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import static org.apache.logging.log4j.util.Strings.isBlank;
+import org.springframework.context.annotation.Configuration;
 
 @Data
-@ConfigurationProperties(prefix = "tmdb")
+@Configuration
 public class TmdbProperties {
 
     @Value("${TMDB_API_KEY}")
     private String apiKey;
-    private String host;
-    private String apiHost;
-    private String fileHost;
+    @Value("${TMDB_ACCESS_TOKEN}")
     private String accessToken;
-    private String sessionId;
 }

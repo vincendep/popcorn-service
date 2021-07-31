@@ -10,10 +10,10 @@ public abstract class TmdbShowResponse {
     private Long tmdbId;
     @JsonProperty("imdb_id")
     private String imdbId;
-    @JsonProperty("title")
-    private String title;
-    @JsonProperty("original_title")
-    private String originalTitle;
+    @JsonProperty("backdrop_path")
+    private String backdropPath;
+    @JsonProperty("homepage")
+    private String homepage;
     @JsonProperty("overview")
     private String overview;
     @JsonProperty("original_language")
@@ -22,4 +22,12 @@ public abstract class TmdbShowResponse {
     private Float voteAverage;
     @JsonProperty("vote_count")
     private Integer voteCount;
+    @JsonProperty("popularity")
+    private Float popularity;
+    @JsonProperty("poster_path")
+    private String posterPath;
+    @JsonProperty("status")
+    private String status;
+    @JsonProperty("tagline")
+    private String tagline;
 }
