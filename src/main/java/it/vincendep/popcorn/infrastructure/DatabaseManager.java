@@ -27,7 +27,7 @@ public class DatabaseManager {
                     "--noexit",
             });
         } else {
-            log.warn("Unable to lunch DatabaseManager for Datasource={}", ds);
+            log.warn("Unable to lunch DatabaseManager for the configured datasource");
         }
     }
 }
