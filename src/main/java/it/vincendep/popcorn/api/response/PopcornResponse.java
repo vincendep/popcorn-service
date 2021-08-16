@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class PopcornMovieResponse<T> {
+public class PopcornResponse<T> {
 
     @JsonUnwrapped
-    private final T movieResponse;
+    private final T response;
     @JsonUnwrapped
-    private final MovieRating movieRating;
+    private final MovieRating rating;
 }
