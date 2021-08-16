@@ -46,7 +46,7 @@ public class OmdbMovieResponse extends OmdbResponse {
     @JsonProperty("Metascore")
     private Integer metascore;
     private Float imdbRating;
-    private Integer imdbVotes;
+    private Long imdbVotes;
     @JsonProperty("imdbID")
     private String imdbId;
     @JsonProperty("Type")
@@ -96,7 +96,7 @@ public class OmdbMovieResponse extends OmdbResponse {
     @JsonSetter("imdbVotes")
     public void setImdbVotes(String imdbVotes) {
         try {
-            this.imdbVotes = Integer.valueOf(imdbVotes.replaceAll(",", ""));
+            this.imdbVotes = Long.valueOf(imdbVotes.replaceAll(",", ""));
         } catch (NumberFormatException | NullPointerException ignored) {}
     }
 

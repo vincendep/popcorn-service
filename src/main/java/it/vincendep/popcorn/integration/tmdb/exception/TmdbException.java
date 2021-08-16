@@ -1,6 +1,6 @@
 package it.vincendep.popcorn.integration.tmdb.exception;
 
-public class TmdbException extends Exception {
+public class TmdbException extends RuntimeException {
 
     public TmdbException() {
         super();

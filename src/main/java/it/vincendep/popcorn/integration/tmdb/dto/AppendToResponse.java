@@ -1,15 +1,11 @@
 package it.vincendep.popcorn.integration.tmdb.dto;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import com.google.common.base.Joiner;
-import com.google.common.base.Strings;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import static com.google.common.base.Strings.emptyToNull;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @Getter(AccessLevel.PRIVATE)
 @RequiredArgsConstructor

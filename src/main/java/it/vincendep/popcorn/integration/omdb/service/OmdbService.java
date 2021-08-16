@@ -1,11 +1,10 @@
 package it.vincendep.popcorn.integration.omdb.service;
 
 import it.vincendep.popcorn.integration.omdb.dto.OmdbMovieResponse;
-import it.vincendep.popcorn.integration.omdb.exception.OmdbServiceException;
+import it.vincendep.popcorn.integration.omdb.exception.OmdbException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.bool.BooleanUtils;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -26,7 +25,7 @@ public class OmdbService {
                     if (res.getResponse()) {
                         sink.next(res);
                     } else {
-                        sink.error(new OmdbServiceException("Error getting OmdbMovie with id=" + imdbId + ": " + res.getError()));
+                        sink.error(new OmdbException(res.getError()));
                     }
                 });
     }
