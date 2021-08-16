@@ -35,7 +35,7 @@ public class TmdbExportResourceResolver {
     }
 
     protected Resource createResource(String url) throws IOException {
-        File tempFile = File.createTempFile(Instant.now().toString(), "txt");
+        File tempFile = File.createTempFile(Instant.now().toString(), ".txt");
         FileUtils.copyURLToFile(new URL(url), tempFile);
         return new GZIPResource(new FileSystemResource(tempFile));
     }

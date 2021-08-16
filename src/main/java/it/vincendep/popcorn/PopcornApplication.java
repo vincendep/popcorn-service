@@ -18,10 +18,4 @@ public class PopcornApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PopcornApplication.class, args);
 	}
-
-	@Bean
-	@Primary
-	public WebClient webClient() {
-		return WebClient.create();
-	}
 }
