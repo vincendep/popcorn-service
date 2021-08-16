@@ -38,16 +38,15 @@ public class OmdbResponseMapper {
         }
         for (Map.Entry<String, String> rating: response.getRatings().entrySet()) {
             try {
-                switch (rating.getKey()) {
-                    case "Rotten Tomatoes":
-                        Integer tomatometer = Integer.valueOf(rating.getValue().replace('%', '\0'));
-                        Tomatoes tomatoes = movieRating.getTomatoes();
-                        if (tomatoes == null) {
-                            tomatoes = new Tomatoes();
-                            movieRating.setTomatoes(tomatoes);
-                        }
-                        tomatoes.setTomatometer(tomatometer);
-                        break;
+                if ("Rotten Tomatoes".equals(rating.getKey())) {
+                    String value = rating.getValue();
+                    Integer tomatometer = Integer.valueOf(value.substring(0, value.length() - 1));
+                    Tomatoes tomatoes = movieRating.getTomatoes();
+                    if (tomatoes == null) {
+                        tomatoes = new Tomatoes();
+                        movieRating.setTomatoes(tomatoes);
+                    }
+                    tomatoes.setTomatometer(tomatometer);
                 }
             } catch (NumberFormatException ignored) {}
         }
