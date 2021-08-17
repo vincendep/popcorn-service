@@ -15,6 +15,7 @@ public class PopcornApplication {
 
 	public static final String DEV = "dev";
 	public static final String TEST = "test";
+	public static final String PROD = "prod";
 
 	public static void main(String[] args) {
 		SpringApplication.run(PopcornApplication.class, args);

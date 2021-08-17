@@ -31,12 +31,12 @@ public class TmdbExportResourceResolver {
         if (exportDate.getHour() < TMDB_DAILY_EXPORT_HOUR) {
             exportDate = exportDate.minusDays(1);
         }
-        return createResource(String.format(URL_FORMAT, tmdbExportFile.filePrefix(), exportDate));
-    }
-
-    protected Resource createResource(String url) throws IOException {
-        File tempFile = File.createTempFile(Instant.now().toString(), ".txt");
-        FileUtils.copyURLToFile(new URL(url), tempFile);
-        return new GZIPResource(new FileSystemResource(tempFile));
+        URL url = new URL(String.format(URL_FORMAT, tmdbExportFile.filePrefix(), exportDate));
+        File file = new File(new File(System.getProperty("java.io.tmpdir")), url.getFile());
+        if (!file.exists()) {
+            FileUtils.copyURLToFile(url, file);
+            file.deleteOnExit();
+        }
+        return new GZIPResource(new FileSystemResource(file));
     }
 }

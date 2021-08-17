@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import static it.vincendep.popcorn.integration.tmdb.export.TmdbExportResourceResolver.TMDB_DAILY_EXPORT_HOUR;
 import static it.vincendep.popcorn.integration.tmdb.export.TmdbExportResourceResolver.TMDB_DAILY_EXPORT_ZONE_OFFSET;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -23,7 +24,16 @@ public class TmdbExportResourceResolverTests {
     private final TmdbExportResourceResolver tmdbExportResourceResolver = new TmdbExportResourceResolver();
 
     @Test
-    void todayExportFileExists() throws IOException {
+    void whenGetResource_thenIsEqualToTodayResource() throws IOException {
+        for (TmdbExportFile exportFile: TmdbExportFile.values()) {
+            Resource resource = tmdbExportResourceResolver.getResource(exportFile);
+            Resource todayResource = tmdbExportResourceResolver.getResource(exportFile, Instant.now());
+            assertThat(resource, equalTo(todayResource));
+        }
+    }
+
+    @Test
+    void givenToday_whenGetResource_thenExistsAndIsReadable() throws IOException {
         for (TmdbExportFile exportFile: TmdbExportFile.values()) {
             Resource resource = tmdbExportResourceResolver.getResource(exportFile);
             assertThat(resource.exists(), is(true));
@@ -32,7 +42,7 @@ public class TmdbExportResourceResolverTests {
     }
 
     @Test
-    void tomorrowExportFileDoesNotExists() {
+    void givenTomorrow_whenGetResource_thenThrows() {
         Instant tomorrow = LocalDateTime
                 .now(TMDB_DAILY_EXPORT_ZONE_OFFSET)
                 .plusDays(1L)

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.nio.channels.ReadableByteChannel;
+import java.util.Objects;
 import java.util.zip.GZIPInputStream;
 
 public class GZIPResource implements Resource {
@@ -86,5 +87,22 @@ public class GZIPResource implements Resource {
     @Override
     public String getDescription() {
         return resource.getDescription();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof GZIPResource && this.resource.equals(((GZIPResource) o).resource);
+    }
+
+    @Override
+    public int hashCode() {
+        return resource.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "GZIPResource{" +
+                "resource=" + resource +
+                '}';
     }
 }
