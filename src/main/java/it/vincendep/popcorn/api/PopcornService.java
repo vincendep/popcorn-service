@@ -18,7 +18,7 @@ public class PopcornService {
     private final MovieRatingService movieRatingService;
 
     public Flux<PopcornResponse<?>> query(Pageable pageable) {
-        return movieRatingService.findAll(pageable).flatMap(rating ->
+        return movieRatingService.findAll(pageable).concatMap(rating ->
                 tmdbService.getMovieDetails(rating.getTmdb().getId()).map(movie -> new PopcornResponse<>(movie, rating)));
     }
 
