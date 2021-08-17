@@ -12,11 +12,51 @@ import java.util.stream.Collectors;
 
 public class QueryParameterExtractor {
 
-    private String pageParamName = "skip";
-    private String sizeParamName = "limit";
+    private String pageParamName = "page";
+    private String sizeParamName = "size";
     private String sortParamName = "sort";
     private int defaultSize = 50;
     private int defaultPage = 0;
+
+    public String getPageParamName() {
+        return pageParamName;
+    }
+
+    public void setPageParamName(String pageParamName) {
+        this.pageParamName = pageParamName;
+    }
+
+    public String getSizeParamName() {
+        return sizeParamName;
+    }
+
+    public void setSizeParamName(String sizeParamName) {
+        this.sizeParamName = sizeParamName;
+    }
+
+    public String getSortParamName() {
+        return sortParamName;
+    }
+
+    public void setSortParamName(String sortParamName) {
+        this.sortParamName = sortParamName;
+    }
+
+    public int getDefaultSize() {
+        return defaultSize;
+    }
+
+    public void setDefaultSize(int defaultSize) {
+        this.defaultSize = defaultSize;
+    }
+
+    public int getDefaultPage() {
+        return defaultPage;
+    }
+
+    public void setDefaultPage(int defaultPage) {
+        this.defaultPage = defaultPage;
+    }
 
     public Pageable getPageable(ServerWebExchange exchange) {
         var params = exchange.getRequest().getQueryParams();

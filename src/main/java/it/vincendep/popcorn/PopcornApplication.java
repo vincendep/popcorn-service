@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class PopcornApplication {
 
 	public static final String DEV = "dev";
+	public static final String TEST = "test";
 
 	public static void main(String[] args) {
 		SpringApplication.run(PopcornApplication.class, args);

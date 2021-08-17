@@ -11,6 +11,9 @@ public class ApiConfig {
 
     @Bean
     public QueryParameterExtractor reactiveParameterExtractor() {
-        return new QueryParameterExtractor();
+        var extractor = new QueryParameterExtractor();
+        extractor.setPageParamName("skip");
+        extractor.setSizeParamName("limit");
+        return extractor;
     }
 }

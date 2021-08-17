@@ -9,6 +9,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -19,7 +20,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @ComponentScan
 @EnableScheduling
 @RequiredArgsConstructor
-@Profile("!" + PopcornApplication.DEV)
+@ConditionalOnProperty("popcorn.integration.scheduling.enabled")
 public class IntegrationConfig {
 
     private final Job popcornJob;

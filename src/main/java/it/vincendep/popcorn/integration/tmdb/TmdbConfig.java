@@ -2,7 +2,6 @@ package it.vincendep.popcorn.integration.tmdb;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +17,6 @@ import static org.springframework.web.util.UriComponentsBuilder.fromUri;
 public class TmdbConfig {
 
     @Bean
-    @ConditionalOnProperty("TMDB_ACCESS_TOKEN")
     public WebClient tmdbV4Client(WebClient.Builder builder, @Value("${TMDB_ACCESS_TOKEN}") String accessToken) {
         ExchangeFilterFunction requestTokenFilter = (request, next) ->
                 next.exchange(from(request)
