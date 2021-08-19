@@ -5,5 +5,4 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Profile(PopcornApplication.PROD)
-public class PopcornProdApplication {
-}
+public class PopcornProdApplication {}

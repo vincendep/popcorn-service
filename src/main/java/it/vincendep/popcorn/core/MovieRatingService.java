@@ -16,6 +16,10 @@ public class MovieRatingService {
         return movieRatingRepository.findAll(pageable);
     }
 
+    public Flux<MovieRating> findAllByTmdbIsNotNull(Pageable pageable) {
+        return movieRatingRepository.findAllByTmdbIsNotNull(pageable);
+    }
+
     public Mono<MovieRating> findByTmdbId(Long id) {
         return movieRatingRepository.findByTmdb_Id(id);
     }

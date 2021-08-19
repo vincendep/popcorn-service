@@ -21,8 +21,8 @@ public class PopcornHandler {
 
     public @NonNull Mono<ServerResponse> queryMovies(ServerRequest request) {
         var pageable = parameterExtractor.getPageable(request.exchange());
-        return popcornService.query(pageable)
-                .as(response -> ok().contentType(MediaType.TEXT_EVENT_STREAM).body(response, PopcornResponse.class));
+        return ok().contentType(MediaType.TEXT_EVENT_STREAM)
+                .body(popcornService.query(pageable), PopcornResponse.class);
     }
 
     public @NonNull Mono<ServerResponse> getMovie(ServerRequest request) {

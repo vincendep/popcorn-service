@@ -18,8 +18,10 @@ public class PopcornService {
     private final MovieRatingService movieRatingService;
 
     public Flux<PopcornResponse<?>> query(Pageable pageable) {
-        return movieRatingService.findAll(pageable).concatMap(rating ->
-                tmdbService.getMovieDetails(rating.getTmdb().getId()).map(movie -> new PopcornResponse<>(movie, rating)));
+        return movieRatingService.findAllByTmdbIsNotNull(pageable)
+                .concatMap(rating -> tmdbService.getMovieDetails(rating.getTmdb().getId())
+                        .onErrorResume(ex -> Mono.empty())
+                        .map(movie -> new PopcornResponse<>(movie, rating)));
     }
 
     public Mono<PopcornResponse<?>> findByTmdbId(Long id) {
