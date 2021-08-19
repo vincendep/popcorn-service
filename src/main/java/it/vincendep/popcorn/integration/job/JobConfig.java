@@ -133,7 +133,7 @@ public class JobConfig {
         return movieRating -> {
             OmdbMovieResponse response = omdbService.getById(movieRating.getImdb().getId()).block();
             if (response != null) {
-                return OmdbResponseMapper.map(response, movieRating);
+                return OmdbResponseMapper.patch(response, new MovieRating(movieRating));
             }
             return null;
         };

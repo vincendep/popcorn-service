@@ -13,10 +13,6 @@ public class OmdbResponseMapper {
         return patch(response, new MovieRating());
     }
 
-    public static MovieRating map(OmdbMovieResponse response, MovieRating base) {
-        return patch(response, new MovieRating(base));
-    }
-
     public static MovieRating patch(OmdbMovieResponse response, MovieRating movieRating) {
         if (response.getImdbId() != null) {
             Imdb imdb = movieRating.getImdb();
