@@ -17,14 +17,17 @@ public class OmdbResponseTests {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    void givenJson_whenDeserialize_thenTypeIsCorrect() throws IOException {
+    void givenOmdbResponse_whenDeserialize_thenTypeIsCorrect() throws IOException {
         Resource movieJson = new ClassPathResource("stubs/omdb/movie.json");
         Resource tvShowJson = new ClassPathResource("stubs/omdb/tv-show.json");
+        Resource tvEpisodeJson = new ClassPathResource("stubs/omdb/tv-episode.json");
 
         OmdbResponse movie = objectMapper.readValue(movieJson.getFile(), OmdbResponse.class);
         OmdbResponse tvShow = objectMapper.readValue(tvShowJson.getFile(), OmdbResponse.class);
+        OmdbResponse tvEpisode = objectMapper.readValue(tvEpisodeJson.getFile(), OmdbResponse.class);
 
         assertThat(movie).isInstanceOf(OmdbMovieResponse.class);
         assertThat(tvShow).isInstanceOf(OmdbTvShowResponse.class);
+        assertThat(tvEpisode).isInstanceOf(OmdbTvEpisodeResponse.class);
     }
 }
