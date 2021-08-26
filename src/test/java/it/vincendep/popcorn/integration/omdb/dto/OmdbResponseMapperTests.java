@@ -11,11 +11,13 @@ public class OmdbResponseMapperTests {
 
     @Test
     void givenNull_whenMap_thenThrows() {
-        assertThatThrownBy(() -> OmdbResponseMapper.map(null)).isInstanceOf(NullPointerException.class);
+        assertThatThrownBy(() -> OmdbResponseMapper.map(null))
+                .isInstanceOf(NullPointerException.class);
     }
 
     @Test
     void givenNull_whenPatch_thenThrows() {
-        assertThatThrownBy(() -> OmdbResponseMapper.patch(null, null)).isInstanceOf(NullPointerException.class);
+        assertThatThrownBy(() -> OmdbResponseMapper.patch(null, null))
+                .isInstanceOf(NullPointerException.class);
     }
 }
