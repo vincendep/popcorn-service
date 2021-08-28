@@ -1,8 +1,8 @@
 package it.vincendep.popcorn.api;
 
 import it.vincendep.popcorn.api.response.PopcornResponse;
-import it.vincendep.popcorn.core.MovieRating;
-import it.vincendep.popcorn.core.MovieRatingService;
+import it.vincendep.popcorn.core.Movie;
+import it.vincendep.popcorn.core.MovieService;
 import it.vincendep.popcorn.integration.tmdb.service.TmdbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +15,10 @@ import reactor.core.publisher.Mono;
 public class PopcornService {
 
     private final TmdbService tmdbService;
-    private final MovieRatingService movieRatingService;
+    private final MovieService movieService;
 
     public Flux<PopcornResponse<?>> query(Pageable pageable) {
-        return movieRatingService.findAllByTmdbIsNotNull(pageable)
+        return movieService.findAllByTmdbIsNotNull(pageable)
                 .concatMap(rating -> tmdbService.getMovieDetails(rating.getTmdb().getId())
                         .onErrorResume(ex -> Mono.empty())
                         .map(movie -> new PopcornResponse<>(movie, rating)));
@@ -26,6 +26,6 @@ public class PopcornService {
 
     public Mono<PopcornResponse<?>> findByTmdbId(Long id) {
         return tmdbService.getMovieDetails(id)
-                .zipWith(movieRatingService.findByTmdbId(id).defaultIfEmpty(new MovieRating()), PopcornResponse::new);
+                .zipWith(movieService.findByTmdbId(id).defaultIfEmpty(new Movie()), PopcornResponse::new);
     }
 }

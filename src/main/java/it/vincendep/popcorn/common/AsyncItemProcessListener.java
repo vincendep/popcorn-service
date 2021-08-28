@@ -1,9 +1,6 @@
 package it.vincendep.popcorn.common;
 
 import org.springframework.batch.core.ItemProcessListener;
-import org.springframework.batch.core.annotation.AfterProcess;
-import org.springframework.batch.core.annotation.BeforeProcess;
-import org.springframework.batch.core.annotation.OnProcessError;
 import org.springframework.lang.NonNull;
 import org.springframework.util.concurrent.ListenableFuture;
 
@@ -16,13 +13,11 @@ public class AsyncItemProcessListener<I,O> implements ItemProcessListener<I, Lis
     }
 
     @Override
-    @BeforeProcess
     public void beforeProcess(I item) {
         delegate.beforeProcess(item);
     }
 
     @Override
-    @AfterProcess
     public void afterProcess(I item, ListenableFuture<O> future) {
         if (future != null) {
             future.addCallback(result -> delegate.afterProcess(item, result), ex -> onProcessError(item, (Exception) ex));
@@ -32,7 +27,6 @@ public class AsyncItemProcessListener<I,O> implements ItemProcessListener<I, Lis
     }
 
     @Override
-    @OnProcessError
     public void onProcessError(I item, Exception e) {
         delegate.onProcessError(item, e);
     }

@@ -2,9 +2,6 @@ package it.vincendep.popcorn.common;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ItemWriteListener;
-import org.springframework.batch.core.annotation.AfterWrite;
-import org.springframework.batch.core.annotation.BeforeWrite;
-import org.springframework.batch.core.annotation.OnWriteError;
 import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
@@ -22,7 +19,6 @@ public class AsyncItemWriteListener<T> implements ItemWriteListener<ListenableFu
     }
 
     @Override
-    @BeforeWrite
     public void beforeWrite(List<? extends ListenableFuture<T>> items) {
         try {
             this.delegate.beforeWrite(unwrapItems(items));
@@ -30,7 +26,6 @@ public class AsyncItemWriteListener<T> implements ItemWriteListener<ListenableFu
     }
 
     @Override
-    @AfterWrite
     public void afterWrite(List<? extends ListenableFuture<T>> items) {
         try {
             this.delegate.afterWrite(unwrapItems(items));
@@ -38,7 +33,6 @@ public class AsyncItemWriteListener<T> implements ItemWriteListener<ListenableFu
     }
 
     @Override
-    @OnWriteError
     public void onWriteError(Exception exception, List<? extends ListenableFuture<T>> items) {
         try {
             this.delegate.onWriteError(exception, unwrapItems(items));
