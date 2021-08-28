@@ -11,13 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class MovieRating extends ShowRating {
+public class TvShow extends Show {
 
-    public static final String COLLECTION_NAME = "movieRating";
+    public static final String COLLECTION_NAME = "tvShow";
 
-    public MovieRating(MovieRating other) {
+    public TvShow(TvShow other) {
         super(other);
     }
 }
-
-

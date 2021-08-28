@@ -9,8 +9,8 @@ public class Metacritic {
 
     private Integer metascore;
     private Integer criticReviews;
-    private Integer userScore;
-    private Integer userReviews;
+    private Float userScore;
+    private Long userReviews;
 
     public Metacritic(Metacritic other) {
         this.metascore = other.metascore;

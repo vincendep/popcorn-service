@@ -10,7 +10,7 @@ import org.springframework.lang.NonNull;
 @Data
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class ShowRating {
+public abstract class Show {
 
     @Id
     @JsonIgnore
@@ -20,7 +20,7 @@ public abstract class ShowRating {
     private Tomatoes tomatoes;
     private Imdb imdb;
 
-    public ShowRating(@NonNull ShowRating other) {
+    public Show(@NonNull Show other) {
         this.id = other.id;
         if (other.tmdb != null) {
             this.tmdb = new Tmdb(other.tmdb);

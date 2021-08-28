@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 public class Tomatoes {
 
     private Integer tomatometer;
-    private Integer positiveReviews;
-    private Integer negativeReviews;
+    private Long positiveReviews;
+    private Long negativeReviews;
+    private Long ratings;
     private Integer audienceScore;
-    private Integer ratings;
     private Boolean certifiedFresh;
 
     public Tomatoes(Tomatoes other) {
