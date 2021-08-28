@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 @Getter(AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 public enum AppendToResponse {
+    EXTERNAL_IDS("external_ids"),
     WATCH_PROVIDERS("watch/providers"),
     VIDEOS("videos");
 

@@ -8,12 +8,8 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TmdbMovieExportFileItem extends TmdbExportFileItem {
+public class TmdbTvShowExportFileItem extends TmdbExportFileItem {
 
-    @JsonProperty("original_title")
-    private String originalTitle;
-    @JsonProperty("video")
-    private boolean video;
-    @JsonProperty("adult")
-    private boolean adult;
+    @JsonProperty("original_name")
+    private String originalName;
 }

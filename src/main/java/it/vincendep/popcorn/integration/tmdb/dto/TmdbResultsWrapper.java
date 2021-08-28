@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class TmdbResultsResponseWrapper<T> {
+public class TmdbResultsWrapper<T> {
 
     @JsonProperty("results")
     private T results;

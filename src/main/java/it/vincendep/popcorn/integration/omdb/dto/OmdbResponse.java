@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toMap;
         @JsonSubTypes.Type(value = OmdbTvShowResponse.class, name = "series"),
         @JsonSubTypes.Type(value = OmdbTvEpisodeResponse.class, name = "episode")
 })
-public class OmdbResponse {
+public abstract class OmdbResponse {
 
     @JsonProperty("Title")
     private String title;

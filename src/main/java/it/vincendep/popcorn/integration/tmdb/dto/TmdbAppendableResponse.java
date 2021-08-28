@@ -16,7 +16,7 @@ public class TmdbAppendableResponse<T>  {
     @JsonUnwrapped
     private T response;
     @JsonProperty("watch/providers")
-    private TmdbResultsResponseWrapper<Map<String, TmdbMovieWatchProvidersResponse>> watchProviders;
+    private TmdbResultsWrapper<Map<String, TmdbMovieWatchProvidersResponse>> watchProviders;
     @JsonProperty("videos")
-    private TmdbResultsResponseWrapper<List<TmdbVideoResponse>> videos;
+    private TmdbResultsWrapper<List<TmdbVideoResponse>> videos;
 }

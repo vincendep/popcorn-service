@@ -1,6 +1,6 @@
 package it.vincendep.popcorn.integration.omdb.service;
 
-import it.vincendep.popcorn.integration.omdb.dto.OmdbMovieResponse;
+import it.vincendep.popcorn.integration.omdb.dto.OmdbResponse;
 import it.vincendep.popcorn.integration.omdb.exception.OmdbException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,11 @@ public class OmdbService {
         this.omdbClient = omdbClient;
     }
 
-    public Mono<OmdbMovieResponse> getById(String imdbId) {
+    public Mono<OmdbResponse> getById(String imdbId) {
         return omdbClient.get()
                 .uri(builder -> builder.queryParam("i", imdbId).build())
                 .retrieve()
-                .bodyToMono(OmdbMovieResponse.class)
+                .bodyToMono(OmdbResponse.class)
                 .handle((res, sink) -> {
                     if (res.getResponse()) {
                         sink.next(res);
