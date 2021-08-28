@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 public class OmdbResponseTests {
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void givenOmdbResponse_whenDeserialize_thenTypeIsCorrect() throws IOException {
