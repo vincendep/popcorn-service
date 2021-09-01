@@ -40,12 +40,13 @@ public class AsyncItemWriter<T> implements ItemStreamWriter<Future<T>>, Initiali
                 if (item != null) {
                     list.add(future.get());
                 }
-            } catch (ExecutionException var7) {
-                Throwable cause = var7.getCause();
-                if (cause != null && cause instanceof Exception) {
+            } catch (ExecutionException ex) {
+                Throwable cause = ex.getCause();
+                if (cause instanceof Exception) {
                     log.debug("An exception was thrown while processing an item", cause);
+                    throw (Exception) cause;
                 }
-                return;
+                throw ex;
             }
         }
         this.delegate.write(list);
