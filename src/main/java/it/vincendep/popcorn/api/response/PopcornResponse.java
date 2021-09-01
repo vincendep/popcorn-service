@@ -7,10 +7,9 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class PopcornResponse<T> {
+public class PopcornResponse<T, F> {
 
     @JsonUnwrapped
     private final T response;
-    @JsonUnwrapped
-    private final Movie rating;
+    private final F popcornData;
 }

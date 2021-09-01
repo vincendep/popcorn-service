@@ -12,10 +12,6 @@ public class MovieService {
 
     private final MovieRepository movieRepository;
 
-    public Flux<Movie> findAll(Pageable pageable) {
-        return movieRepository.findAll(pageable);
-    }
-
     public Flux<Movie> findAllByTmdbIsNotNull(Pageable pageable) {
         return movieRepository.findAllByTmdbIsNotNull(pageable);
     }

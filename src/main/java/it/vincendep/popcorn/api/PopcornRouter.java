@@ -17,6 +17,8 @@ public class PopcornRouter {
     @Bean
     public RouterFunction<ServerResponse> popcornRoutes() {
         return route(GET("movies"), handler::queryMovies)
-                .andRoute(GET("movies/{id}"), handler::getMovie);
+                .andRoute(GET("movies/{id}"), handler::getMovie)
+                .andRoute(GET("tv-shows"), handler::queryTvShows)
+                .andRoute(GET("tv-shows/{id}"), handler::getTvShow);
     }
 }
