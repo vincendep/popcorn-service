@@ -1,14 +1,12 @@
 package it.vincendep.popcorn.integration.tmdb.service;
 
-import it.vincendep.popcorn.integration.tmdb.dto.TmdbTvShowResponse;
+import it.vincendep.popcorn.integration.tmdb.dto.*;
 import it.vincendep.popcorn.util.ArrayUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import it.vincendep.popcorn.integration.tmdb.dto.AppendToResponse;
-import it.vincendep.popcorn.integration.tmdb.dto.TmdbExternalIdResponse;
-import it.vincendep.popcorn.integration.tmdb.dto.TmdbMovieResponse;
 import reactor.core.publisher.Mono;
 
 import java.util.Optional;
@@ -22,7 +20,7 @@ public class TmdbService {
         this.tmdbClient = tmdbClient;
     }
 
-    public Mono<TmdbMovieResponse> getMovieDetails(Long movieId, AppendToResponse... appendToResponses) {
+    public Mono<TmdbAppendableResponse<TmdbMovieResponse>> getMovieDetails(Long movieId, AppendToResponse... appendToResponses) {
         return tmdbClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{id}")
@@ -31,7 +29,7 @@ public class TmdbService {
                                 .map(AppendToResponse::queryString))
                         .build(movieId))
                 .retrieve()
-                .bodyToMono(TmdbMovieResponse.class);
+                .bodyToMono(new ParameterizedTypeReference<>() {});
     }
 
     public Mono<TmdbExternalIdResponse> getMovieExternalIds(Long movieId) {
@@ -43,7 +41,7 @@ public class TmdbService {
                 .bodyToMono(TmdbExternalIdResponse.class);
     }
 
-    public Mono<TmdbTvShowResponse> getTvShowDetails(Long tvShowId, AppendToResponse... appendToResponses) {
+    public Mono<TmdbAppendableResponse<TmdbTvShowResponse>> getTvShowDetails(Long tvShowId, AppendToResponse... appendToResponses) {
         return tmdbClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/tv/{id}")
@@ -52,6 +50,6 @@ public class TmdbService {
                                 .map(AppendToResponse::queryString))
                         .build(tvShowId))
                 .retrieve()
-                .bodyToMono(TmdbTvShowResponse.class);
+                .bodyToMono(new ParameterizedTypeReference<>() {});
     }
 }

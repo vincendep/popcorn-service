@@ -1,4 +1,4 @@
-package it.vincendep.popcorn.integration.batch.job;
+package it.vincendep.popcorn.integration.job.tv;
 
 import it.vincendep.popcorn.common.AsyncItemProcessor;
 import it.vincendep.popcorn.common.AsyncItemWriter;
@@ -8,6 +8,7 @@ import it.vincendep.popcorn.core.TvShow;
 import it.vincendep.popcorn.integration.omdb.dto.OmdbResponse;
 import it.vincendep.popcorn.integration.omdb.mapper.OmdbTvShowMapper;
 import it.vincendep.popcorn.integration.omdb.service.OmdbService;
+import it.vincendep.popcorn.integration.tmdb.dto.TmdbAppendableResponse;
 import it.vincendep.popcorn.integration.tmdb.dto.TmdbTvShowResponse;
 import it.vincendep.popcorn.integration.tmdb.export.TmdbExportFile;
 import it.vincendep.popcorn.integration.tmdb.export.TmdbExportResourceResolver;
@@ -59,7 +60,9 @@ public class TvShowJobItemConfig {
     @Bean
     public ItemProcessor<TmdbTvShowExportFileItem, TvShow> tmdbTvShowProcessor(TmdbService tmdbService) {
         return item -> {
-            TmdbTvShowResponse response = tmdbService.getTvShowDetails(item.getId()).block();
+            TmdbTvShowResponse response = tmdbService.getTvShowDetails(item.getId())
+                    .map(TmdbAppendableResponse::getResponse)
+                    .block();
             if (response != null) {
                 return TmdbTvShowMapper.getInstance().map(response);
             }

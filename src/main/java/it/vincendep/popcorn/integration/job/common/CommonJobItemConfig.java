@@ -1,4 +1,4 @@
-package it.vincendep.popcorn.integration.batch.job;
+package it.vincendep.popcorn.integration.job.common;
 
 import it.vincendep.popcorn.common.AsyncItemProcessListener;
 import it.vincendep.popcorn.common.AsyncItemWriteListener;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class CommonItemConfig {
+public class CommonJobItemConfig {
 
     @Bean
     public AsyncItemProcessListener<?, ?> asyncItemProcessListener() {
@@ -31,7 +31,7 @@ public class CommonItemConfig {
 
             @Override
             public void onProcessError(Object item, Exception e) {
-                logger.info("Error processing item: {}", item, e);
+                logger.error("Error processing item: {}", item, e);
             }
         });
         return listener;

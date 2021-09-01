@@ -2,8 +2,6 @@ package it.vincendep.popcorn.integration.tmdb.mapper;
 
 import it.vincendep.popcorn.common.Mapper;
 import it.vincendep.popcorn.core.*;
-import it.vincendep.popcorn.integration.batch.job.TvShowJobConfig;
-import it.vincendep.popcorn.integration.tmdb.dto.TmdbMovieResponse;
 import it.vincendep.popcorn.integration.tmdb.dto.TmdbShowResponse;
 
 public abstract class TmdbMapper<I extends TmdbShowResponse, O extends Show> extends Mapper<I, O> {
